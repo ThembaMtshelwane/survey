@@ -47,6 +47,7 @@ const SurveyForm = (props: Props) => {
               type="checkbox"
               name="foodItem"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
+              required
             />
             <label htmlFor="pizza">Pizza</label>
           </li>
@@ -56,6 +57,7 @@ const SurveyForm = (props: Props) => {
               type="checkbox"
               name="foodItem"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
+              required
             />
             <label htmlFor="Pasta">Pasta</label>
           </li>
@@ -64,6 +66,7 @@ const SurveyForm = (props: Props) => {
               type="checkbox"
               name="foodItem"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
+              required
             />
             <label htmlFor="papAndWors">Pap and Wors</label>
           </li>
@@ -72,6 +75,7 @@ const SurveyForm = (props: Props) => {
               type="checkbox"
               name="foodItem"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
+              required
             />
             <label htmlFor="other">Other</label>
           </li>
@@ -103,8 +107,9 @@ const SurveyForm = (props: Props) => {
                   <input
                     type="radio"
                     value={1}
-                    className={styles.inputs}
+                    className={styles.radioInputs}
                     name={item.id}
+                    required
                   />
                 </td>
                 <td className={styles.tableDataPointInput}>
@@ -113,6 +118,7 @@ const SurveyForm = (props: Props) => {
                     value={2}
                     className={styles.radioInputs}
                     name={item.id}
+                    required
                   />
                 </td>
                 <td className={styles.tableDataPointInput}>
@@ -121,6 +127,7 @@ const SurveyForm = (props: Props) => {
                     value={3}
                     className={styles.radioInputs}
                     name={item.id}
+                    required
                   />
                 </td>
                 <td className={styles.tableDataPointInput}>
@@ -129,6 +136,7 @@ const SurveyForm = (props: Props) => {
                     value={4}
                     className={styles.radioInputs}
                     name={item.id}
+                    required
                   />
                 </td>
                 <td className={styles.tableDataPointInput}>
@@ -137,6 +145,7 @@ const SurveyForm = (props: Props) => {
                     value={5}
                     className={styles.radioInputs}
                     name={item.id}
+                    required
                   />
                 </td>
               </tr>
