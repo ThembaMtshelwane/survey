@@ -21,10 +21,8 @@ export default function RootLayout({
         <link rel="shortcut icon" href="logo.svg" />
       </head>
       <body className={inter.className}>
-        <main className='mainContainer'>
-          <Navbar />
-          {children}
-        </main>
+        <Navbar />
+        <main className="mainContainer">{children}</main>
       </body>
     </html>
   )
