@@ -31,8 +31,9 @@
   max-width: 250px;
 }
 
-.food {
+.foodContainer {
   border: 2px solid blue;
+  margin-bottom: 10px;
 }
 
 .foodQuestion {
@@ -54,9 +55,59 @@
   margin: 1px;
 }
 
+.activitiesContainer {
+  border: 2px solid blue;
+  margin-bottom: 10px;
+  overflow: scroll;
+}
+
+.tableInstructions {
+  border: 2px solid blue;
+  margin-bottom: 10px;
+}
+
+.table {
+  border-collapse: collapse;
+  font-size: 1.2rem;
+}
+
+.tableHead {
+  margin: 25px 0;
+  min-width: 400px;
+}
+
+.tableHeadings {
+  background-color: rgba(199, 200, 201, 0.566);
+  border: 1px solid rgba(0, 0, 0, 0.685);
+  text-align: center;
+  min-width: 100px;
+  font-weight: 500;
+  padding: 0px 10px;
+}
+
+.tableDataPointQuestion {
+  border: 1px solid rgba(18, 178, 226, 0.685);
+  min-width: 180px;
+}
+
+.tableDataPointInput {
+  border: 1px solid rgba(18, 178, 226, 0.685);
+  text-align: center;
+  color: rgba(18, 178, 226, 0.685);
+}
+.tableDataPointInput,
+.tableDataPointQuestion{
+  padding: 2px;
+}
+
+.radioInputs {
+  cursor: pointer;
+  outline-color: rgba(18, 178, 226, 0.685);
+}
+
 @media only screen and (min-width: 380px) {
   .personalDetailsContainer,
-  .food {
+  .foodContainer {
     display: flex;
   }
   .leftSection {
@@ -69,6 +120,9 @@
   }
   .foodOptions {
     max-width: 300px;
+  }
+  .activitiesContainer {
+    overflow: hidden;
   }
 }
 
