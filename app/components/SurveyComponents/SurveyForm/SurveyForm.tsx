@@ -84,8 +84,8 @@ const SurveyForm = (props: Props) => {
       <section className={styles.activitiesContainer}>
         <p className={styles.tableInstructions}>
           Please rate your level of agreement on a scale from 1 to 5, with 1
-          being &quot;quoted&quot; "strongly agree" and 5 being "strongly
-          disagree".
+          being &quot;strongly agree&quot; and 5 being &quot;strongly
+          disagree&quot;.
         </p>
         <section className={styles.tableSection}>
           <table className={styles.table}>
