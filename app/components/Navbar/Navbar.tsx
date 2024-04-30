@@ -13,7 +13,7 @@ const Navbar = (props: Props) => {
 
   useEffect(() => {
     handleLinkClick(pathname)
-  }, [])
+  }, [pathname])
 
   const handleLinkClick = (link: string) => {
     if (link === '/') {
