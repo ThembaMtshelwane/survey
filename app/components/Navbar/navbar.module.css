@@ -2,19 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   padding: 10px;
   margin: auto;
 }
 
 .leftSection {
   font-weight: 700;
-  border: 2px solid;
+  /* border: 2px solid; */
   padding: 5px;
 }
 
 .rightSection {
-  border: 2px solid;
+  /* border: 2px solid; */
   width: 55%;
   max-width: 350px;
   display: flex;
