@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid red;
+  padding: 20px;
+}
+
+.leftSection {
+  font-weight: 700;
+  border: 2px solid;
+  padding: 5px;
+}
+
+.rightSection {
+  border: 2px solid;
+  width: 55%;
+  max-width: 350px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.links {
+  color: black;
+  text-decoration: none;
+  letter-spacing: 0.75px;
+}
+
+.blueText {
+  color: rgb(29, 129, 206);
+}
+
+.blackText {
+  color: rgb(0, 0, 0);
+}
