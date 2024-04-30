@@ -7,13 +7,8 @@ import { usePathname } from 'next/navigation'
 
 type Props = {}
 const Navbar = (props: Props) => {
-  const [activeStyle1, setActiveStyle1] = useState<string>(
-    () => window.localStorage.getItem('activeStyle1') || styles.blueText
-  )
-  const [activeStyle2, setActiveStyle2] = useState<string>(
-    () => window.localStorage.getItem('activeStyle2') || styles.blackText
-  )
-
+  const [activeStyle1, setActiveStyle1] = useState<string>(styles.blueText)
+  const [activeStyle2, setActiveStyle2] = useState<string>(styles.blackText)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -27,9 +22,10 @@ const Navbar = (props: Props) => {
     } else if (link === '/results') {
       setActiveStyle2(styles.blueText)
       setActiveStyle1(styles.blackText)
+    } else {
+      setActiveStyle2(styles.blackText)
+      setActiveStyle1(styles.blackText)
     }
-    window.localStorage.setItem('activeStyle1', activeStyle1)
-    window.localStorage.setItem('activeStyle2', activeStyle2)
   }
 
   return (
