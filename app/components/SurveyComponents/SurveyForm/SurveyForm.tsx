@@ -144,7 +144,9 @@ const SurveyForm = (props: Props) => {
           </tbody>
         </table>
       </section>
-      <input type="submit" />
+      <section className={styles.buttonContainer}>
+        <input type="submit" className={styles.button} />
+      </section>
     </form>
   )
 }
