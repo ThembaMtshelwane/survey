@@ -6,7 +6,7 @@ import styles from './surveyform.module.css'
 type Props = {}
 const SurveyForm = (props: Props) => {
   const FormAction = async (formData: FormData) => {
-    const res = await fetch('/api', {
+    const res = await fetch('http://localhost:3000/api', {
       method: 'POST',
       body: formData,
     })

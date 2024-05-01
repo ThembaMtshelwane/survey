@@ -1,5 +1,7 @@
+import { db } from '../firebase/firebaseConfig'
 import { activities } from '../lib/data'
 import { ActivityData } from '../lib/definitions'
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 
 export const POST = async (req: Request) => {
   const data = await req.formData()
@@ -13,10 +15,22 @@ export const POST = async (req: Request) => {
     email: data.get('email'),
     birthDate: data.get('birthDate'),
     selectedFoods: Array.from(data.getAll('foodItem')),
-    rating,
+    activityRatings,
   }
 
-  // send userData to database
-  const res = { message: 'User data sent' }
-  return Response.json(res)
+  console.log('user data', userData)
+
+  try {
+    const docRef = await addDoc(collection(db, 'users'), userData)
+
+    const foodDocRef = doc(db, 'allFoodPreferences', docRef.id)
+    await setDoc(foodDocRef, { selectedFoods: userData.selectedFoods })
+
+    const activityDocRef = doc(db, 'allActivityRatings', docRef.id)
+    await setDoc(activityDocRef, { activityRatings: userData.activityRatings })
+
+    return Response.json({ message: 'Data sent successfully' })
+  } catch (e) {
+    return Response.json({ message: `Error : ${e}` })
+  }
 }
