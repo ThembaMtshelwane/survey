@@ -11,7 +11,7 @@ const SubmitButton = (props: Props) => {
       disabled={pending}
       type="submit"
       value={pending ? 'Submitting...' : 'Submit'}
-      className={styles.button}
+      className={styles.button} 
     />
   )
 }

@@ -6,6 +6,7 @@ import { useFormState, useFormStatus } from 'react-dom'
 import { FormSubmitAction } from '@/app/actions/actions'
 import SubmitButton from '../../SubmitButton/SubmitButton'
 import { useEffect, useRef } from 'react'
+import FormMessage from '../../ValidationMessages/FormMessage'
 
 type Props = {}
 const SurveyForm = (props: Props) => {
@@ -94,7 +95,6 @@ const SurveyForm = (props: Props) => {
           </li>
         </ul>
       </section>
-
       <section className={styles.activitiesContainer}>
         <p className={styles.tableInstructions}>
           Please rate your level of agreement on a scale from 1 to 5, with 1
@@ -173,9 +173,7 @@ const SurveyForm = (props: Props) => {
       <section className={styles.buttonContainer}>
         <SubmitButton />
       </section>
-      <section>
-        <p>{state.message}</p>
-      </section>
+      {/* <FormMessage message ={state.message}/> */}
     </form>
   )
 }
