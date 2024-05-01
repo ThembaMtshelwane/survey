@@ -1,11 +1,20 @@
+'use client'
+
 import { activities } from '@/app/lib/data'
 import styles from './surveyform.module.css'
-import { Activity } from '@/app/lib/definitions'
 
 type Props = {}
 const SurveyForm = (props: Props) => {
+  const FormAction = async (formData: FormData) => {
+    const res = await fetch('/api', {
+      method: 'POST',
+      body: formData,
+    })
+    const data = await res.json()
+    console.log(data)
+  }
   return (
-    <form className={styles.formContainer}>
+    <form action={FormAction} className={styles.formContainer}>
       <section className={styles.personalDetailsContainer}>
         <section className={styles.leftSection}>Personal Details:</section>
         <section className={styles.rightSection}>
@@ -46,8 +55,8 @@ const SurveyForm = (props: Props) => {
             <input
               type="checkbox"
               name="foodItem"
+              value="pizza"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
-              required
             />
             <label htmlFor="pizza">Pizza</label>
           </li>
@@ -56,8 +65,8 @@ const SurveyForm = (props: Props) => {
             <input
               type="checkbox"
               name="foodItem"
+              value="pasta"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
-              required
             />
             <label htmlFor="Pasta">Pasta</label>
           </li>
@@ -65,8 +74,8 @@ const SurveyForm = (props: Props) => {
             <input
               type="checkbox"
               name="foodItem"
+              value="papAndWors"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
-              required
             />
             <label htmlFor="papAndWors">Pap and Wors</label>
           </li>
@@ -74,8 +83,8 @@ const SurveyForm = (props: Props) => {
             <input
               type="checkbox"
               name="foodItem"
+              value="other"
               className={`${styles.inputs} ${styles.checkboxInputs}`}
-              required
             />
             <label htmlFor="other">Other</label>
           </li>
