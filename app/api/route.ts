@@ -7,9 +7,10 @@ export const POST = async (req: Request) => {
   const data = await req.formData()
   const activityRatings: ActivityData[] = []
 
-  const rating = activities.map((item) => {
+  activities.map((item) => {
     activityRatings.push({ nameOfActivity: item.id, count: data.get(item.id) })
   })
+
   const userData = {
     fullNames: data.get('fullNames'),
     email: data.get('email'),
@@ -17,9 +18,6 @@ export const POST = async (req: Request) => {
     selectedFoods: Array.from(data.getAll('foodItem')),
     activityRatings,
   }
-
-  console.log('user data', userData)
-
   try {
     const docRef = await addDoc(collection(db, 'users'), userData)
 
@@ -29,8 +27,11 @@ export const POST = async (req: Request) => {
     const activityDocRef = doc(db, 'allActivityRatings', docRef.id)
     await setDoc(activityDocRef, { activityRatings: userData.activityRatings })
 
-    return Response.json({ message: 'Data sent successfully' })
+    return Response.json({
+      message: 'Data sent successfully',
+      status: 'success',
+    })
   } catch (e) {
-    return Response.json({ message: `Error : ${e}` })
+    return Response.json({ message: `Error : ${e}`, status: 'fail' })
   }
 }

@@ -2,19 +2,23 @@
 
 import { activities } from '@/app/lib/data'
 import styles from './surveyform.module.css'
+import { useFormState, useFormStatus } from 'react-dom'
+import { FormSubmitAction } from '@/app/actions/actions'
+import SubmitButton from '../../SubmitButton/SubmitButton'
+import { useEffect, useRef } from 'react'
 
 type Props = {}
 const SurveyForm = (props: Props) => {
-  const FormAction = async (formData: FormData) => {
-    const res = await fetch('http://localhost:3000/api', {
-      method: 'POST',
-      body: formData,
-    })
-    const data = await res.json()
-    console.log(data)
-  }
+  const [state, FormAction] = useFormState(FormSubmitAction, '')
+  const formRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (state.status === 'success') {
+      formRef.current?.reset()
+    }
+  }, [state])
   return (
-    <form action={FormAction} className={styles.formContainer}>
+    <form ref={formRef} action={FormAction} className={styles.formContainer}>
       <section className={styles.personalDetailsContainer}>
         <section className={styles.leftSection}>Personal Details:</section>
         <section className={styles.rightSection}>
@@ -90,6 +94,7 @@ const SurveyForm = (props: Props) => {
           </li>
         </ul>
       </section>
+
       <section className={styles.activitiesContainer}>
         <p className={styles.tableInstructions}>
           Please rate your level of agreement on a scale from 1 to 5, with 1
@@ -166,7 +171,10 @@ const SurveyForm = (props: Props) => {
         </section>
       </section>
       <section className={styles.buttonContainer}>
-        <input type="submit" className={styles.button} />
+        <SubmitButton />
+      </section>
+      <section>
+        <p>{state.message}</p>
       </section>
     </form>
   )
