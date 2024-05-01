@@ -24,5 +24,9 @@ This represents the second page. Here a user will see the results from all the d
 - The UI.
   - First Page: Change the outline colour for the radio and checkbox inputs.
   - Implement the second page.
+    <br>
 - Implement the Database.
+  - Retrieve the data from the database.
+    <br>
 - Implement the Data Analysis functionality.
+  - Process the data.

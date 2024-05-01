@@ -1,8 +1,9 @@
-import { db } from '../firebase/firebaseConfig'
-import { activities } from '../lib/data'
-import { ActivityData } from '../lib/definitions'
+import { db } from '../../firebase/firebaseConfig'
+import { activities } from '../../lib/data'
+import { ActivityData } from '../../lib/definitions'
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 
+// Send results to database
 export const POST = async (req: Request) => {
   const data = await req.formData()
   const activityRatings: ActivityData[] = []
