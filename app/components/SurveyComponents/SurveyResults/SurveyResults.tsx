@@ -1,6 +1,6 @@
 'use client'
 
-import { getData } from '@/app/actions/actions'
+import { getData, getStoredData } from '@/app/actions/actions'
 import { AgeStats, AllUsersInfo, StatData } from '@/app/lib/definitions'
 import {
   getActivityStatistics,
@@ -18,8 +18,13 @@ const SurveyResults = (props: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getData()
-      setAllUsersData(data)
+      const storedData = getStoredData()
+      if (storedData) {
+        setAllUsersData(storedData)
+      } else {
+        const initialData = await getData()
+        setAllUsersData(initialData)
+      }
     }
     fetchData()
   }, [])

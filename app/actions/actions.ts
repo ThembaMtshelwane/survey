@@ -2,12 +2,22 @@ export const FormSubmitAction = async (
   prevState: string,
   formData: FormData
 ) => {
-  const res = await fetch('http://localhost:3000/api/sendData', {
-    method: 'POST',
-    body: formData,
-  })
-  const data = await res.json()
-  return data
+  try {
+    const res = await fetch('http://localhost:3000/api/sendData', {
+      method: 'POST',
+      body: formData,
+    })
+    if (res.ok) {
+      const data = await res.json()
+      const storedData = getStoredData()
+      if (storedData) {
+        localStorage.removeItem('formData') // Remove old data from local storage
+      }
+      return data
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const getData = async () => {
@@ -15,11 +25,16 @@ export const getData = async () => {
     const res = await fetch('http://localhost:3000/api/getData', {
       method: 'GET',
     })
-    if (res) {
+    if (res.ok) {
       const data = await res.json()
+      localStorage.setItem('formData', JSON.stringify(data))
       return data
     }
   } catch (error) {
     console.log(error)
   }
+}
+export const getStoredData = () => {
+  const storedData = localStorage.getItem('formData')
+  return storedData ? JSON.parse(storedData) : null
 }

@@ -28,7 +28,7 @@ export const getAgeStatistic = (userBirthDates: string[]) => {
   const oldest = userAges[userAges.length - 1]
   const youngest = userAges[0]
   const sum = userAges.reduce((acc, age) => acc + age, 0)
-  const average = userAges.length > 0 ? sum / userAges.length : 0
+  const average = userAges.length > 0 ?    parseFloat((sum / userAges.length).toFixed(1)) : 0
 
   return { oldest, youngest, average }
 }
