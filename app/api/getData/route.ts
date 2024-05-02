@@ -26,10 +26,10 @@ export const GET = async (req: Request) => {
 
     console.log('All users fetched successfully')
     return NextResponse.json({
-      years: usersBirthYears,
+      usersBirthYears: usersBirthYears,
       numOfSurveys: usersBirthYears.length,
-      foods: usersFoodPreferences,
-      activities: usersActivityRatings,
+      usersFoodPreferences: usersFoodPreferences,
+      usersActivityRatings: usersActivityRatings,
     })
   } catch (error) {
     console.error('Error fetching users: ', error)

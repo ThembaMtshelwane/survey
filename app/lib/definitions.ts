@@ -16,3 +16,16 @@ export type SurveyInfo = {
   selectedFoods: string[]
   // activityTracker: ActivityData[]
 }
+
+export type AgeStats = {
+  oldest: number
+  youngest: number
+  average: number
+}
+
+export type AllUsersInfo = {
+  usersBirthYears: string[]
+  numOfSurveys: number
+  usersFoodPreferences: string[]
+  usersActivityRatings: ActivityData[]
+}
