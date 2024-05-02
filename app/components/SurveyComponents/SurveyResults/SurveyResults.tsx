@@ -31,8 +31,6 @@ const SurveyResults = (props: Props) => {
     fetchData()
   }, [])
 
-  // console.log(allUsersData)
-
   useEffect(() => {
     if (allUsersData) {
       const ages = getAgeStatistic(allUsersData.usersBirthYears)
@@ -48,8 +46,6 @@ const SurveyResults = (props: Props) => {
         allUsersData.usersActivityRatings,
         allUsersData.numOfSurveys
       )
-      // console.log('activities', activities)
-
       setActivityStatistics(activities)
     }
   }, [allUsersData])
@@ -62,49 +58,31 @@ const SurveyResults = (props: Props) => {
           <section className={styles.data}>
             <section className={styles.personalData}>
               <section className={styles.dataPoint}>
-                <div className={styles.label}>Total number of survey:</div>
+                <div className={styles.label}>Total number of survey :</div>
                 <div className={styles.value}>{allUsersData?.numOfSurveys}</div>
               </section>
               <section className={styles.dataPoint}>
-                <div className={styles.label}>Average:</div>
+                <div className={styles.label}>Average :</div>
                 <div className={styles.value}> {ageStatistics.average}</div>
               </section>
 
               <section className={styles.dataPoint}>
                 <div className={styles.label}>
-                  Oldest person who participated in survey:
+                  Oldest person who participated in survey :
                 </div>
                 <div className={styles.value}>{ageStatistics.oldest}</div>
               </section>
               <section className={styles.dataPoint}>
                 <div className={styles.label}>
-                  Youngest person who participated in survey:
+                  Youngest person who participated in survey :
                 </div>
                 <div className={styles.value}>{ageStatistics.youngest}</div>
               </section>
             </section>
 
-            <section className={styles.foodData}>
-              {foodStatistics.map((food) => (
-                <div key={food.label} className={styles.dataPoint}>
-                  <div className={styles.label}>
-                    Percentage of people who like {food.label} :
-                  </div>
-                  <div className={styles.value}>{food.value}%</div>
-                </div>
-              ))}
-            </section>
+            <Food foodStatistics={foodStatistics} />
 
-            <section className={styles.activityData}>
-              <div>
-                {activityStatistics.map((activity) => (
-                  <div key={activity.label} className={styles.dataPoint}>
-                    <div> People who like to {activity.label}:</div>
-                    <div className={styles.value}>{activity.value}%</div>
-                  </div>
-                ))}
-              </div>
-            </section>
+            <Activity activityStatistics={activityStatistics} />
           </section>
         </section>
       ) : allUsersData ? (
@@ -116,3 +94,61 @@ const SurveyResults = (props: Props) => {
   )
 }
 export default SurveyResults
+
+type a = {
+  activityStatistics: StatData[]
+}
+const Activity = ({ activityStatistics }: a) => {
+  return (
+    <section className={styles.activityData}>
+      <div>
+        <div className={styles.dataPoint}>
+          <div className={styles.label}> People who like to watch movies :</div>
+          <div className={styles.value}>{activityStatistics[0].value}</div>
+        </div>
+        <div className={styles.dataPoint}>
+          <div className={styles.label}>
+            People who like to listen to radio :
+          </div>
+          <div className={styles.value}>{activityStatistics[1].value}</div>
+        </div>
+        <div className={styles.dataPoint}>
+          <div className={styles.label}> People who like to eat out :</div>
+          <div className={styles.value}>{activityStatistics[2].value}</div>
+        </div>
+        <div className={styles.dataPoint}>
+          <div className={styles.label}> People who like to watch TV :</div>
+          <div className={styles.value}>{activityStatistics[3].value}</div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+type f = {
+  foodStatistics: StatData[]
+}
+const Food = ({ foodStatistics }: f) => {
+  return (
+    <section className={styles.foodData}>
+      <div className={styles.dataPoint}>
+        <div className={styles.label}>
+          Percentage of people who like Pizza :
+        </div>
+        <div className={styles.value}>{foodStatistics[0].value}%</div>
+      </div>
+      <div className={styles.dataPoint}>
+        <div className={styles.label}>
+          Percentage of people who like Pasta :
+        </div>
+        <div className={styles.value}>{foodStatistics[1].value}%</div>
+      </div>
+      <div className={styles.dataPoint}>
+        <div className={styles.label}>
+          Percentage of people who like Pap and Wors :
+        </div>
+        <div className={styles.value}>{foodStatistics[2].value}%</div>
+      </div>
+    </section>
+  )
+}

@@ -1,42 +1,44 @@
 .heading {
-  border: 2px solid;
+  /* border: 2px solid; */
   text-align: center;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.1rem;
 }
 
 .resultsContainer {
-  border: 2px solid;
+  /* border: 2px solid; */
   margin-top: 30px;
   margin: 30px auto;
+  font-size: 52px;
+  font-weight: 500;
 }
 
 .data {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   margin: auto;
   max-width: 550px;
 }
 
 .dataPoint {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .personalData,
 .foodData,
 .activityData {
-  border: 2px solid blue;
-  margin: 10px 0px;
+  /* border: 2px solid blue; */
+  margin: 40px 0px;
 }
 
 .value {
-  border: 2px solid blue;
-  width: 15%;
+  /* border: 2px solid blue; */
+  width: 10%;
 }
 .label {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: 80%;
 }
 
