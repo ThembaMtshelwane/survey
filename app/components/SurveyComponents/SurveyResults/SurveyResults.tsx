@@ -1,7 +1,7 @@
 'use client'
 
 import { getData } from '@/app/actions/actions'
-import { AgeStats, AllUsersInfo, FoodData } from '@/app/lib/definitions'
+import { AgeStats, AllUsersInfo, StatData } from '@/app/lib/definitions'
 import {
   getActivityStatistics,
   getAgeStatistic,
@@ -13,8 +13,8 @@ type Props = {}
 const SurveyResults = (props: Props) => {
   const [allUsersData, setAllUsersData] = useState<AllUsersInfo>()
   const [ageStatistics, setAgeStatistics] = useState<AgeStats>()
-  const [foodStatistics, setFoodStatistics] = useState<FoodData[]>()
-  const [activityStatistics, setActivityStatistics] = useState<FoodData>()
+  const [foodStatistics, setFoodStatistics] = useState<StatData[]>()
+  const [activityStatistics, setActivityStatistics] = useState<StatData[]>()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,27 +24,32 @@ const SurveyResults = (props: Props) => {
     fetchData()
   }, [])
 
-  console.log(allUsersData)
+  // console.log(allUsersData)
 
   useEffect(() => {
     if (allUsersData) {
       const ages = getAgeStatistic(allUsersData.usersBirthYears)
       setAgeStatistics(ages)
 
-      const food = getFoodStatistics(allUsersData.usersFoodPreferences)
+      const food = getFoodStatistics(
+        allUsersData.usersFoodPreferences,
+        allUsersData.numOfSurveys
+      )
       setFoodStatistics(food)
 
-      // const activities = getActivityStatistics(
-      //   allUsersData.usersActivityRatings,
-      //   allUsersData.numOfSurveys
-      // )
-      // setActivityStatistics(activities)
+      const activities = getActivityStatistics(
+        allUsersData.usersActivityRatings,
+        allUsersData.numOfSurveys
+      )
+      // console.log('activities', activities)
+
+      setActivityStatistics(activities)
     }
   }, [allUsersData])
 
   return (
     <div>
-      {ageStatistics && foodStatistics ? (
+      {ageStatistics && foodStatistics && activityStatistics ? (
         <div>
           <div>
             <div>Oldest: {ageStatistics.oldest}</div>
@@ -53,17 +58,17 @@ const SurveyResults = (props: Props) => {
           </div>
           <div>
             {foodStatistics.map((food) => (
-              <div key={food.foodItem}>
-                {food.foodItem}: {food.percentage}%
+              <div key={food.label}>
+                {food.label}: {food.value}%
               </div>
             ))}
           </div>
           <div>
-            {/* {Object.keys(activityStatistics).map((activity) => (
-              <div key={activity}>
-                {activity}: {activityStatistics[activity]}
+            {activityStatistics.map((activity) => (
+              <div key={activity.label}>
+                {activity.label}: {activity.value}
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       ) : allUsersData ? (

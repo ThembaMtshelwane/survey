@@ -8,9 +8,9 @@ export type ActivityData = {
   count: FormDataEntryValue | null | number
 }
 
-export type FoodData = {
-  foodItem: string
-  percentage: number
+export type StatData = {
+  label: string
+  value: number
 }
 
 export type SurveyInfo = {

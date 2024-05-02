@@ -1,4 +1,4 @@
-import { ActivityData, FoodData } from '../lib/definitions'
+import { ActivityData, StatData } from '../lib/definitions'
 
 export const dateToAge = (formDateInput: string) => {
   return new Date().getFullYear() - new Date(formDateInput).getFullYear()
@@ -33,20 +33,44 @@ export const getAgeStatistic = (userBirthDates: string[]) => {
   return { oldest, youngest, average }
 }
 
-export const getFoodStatistics = (usersFoodPreferences: string[]) => {
+export const getFoodStatistics = (
+  usersFoodPreferences: string[],
+  numOfSurveys: number
+) => {
   const foodOptions = ['pizza', 'pasta', 'papAndWors', 'other']
 
-  const foodStatistics: FoodData[] = foodOptions.map((foodItem) => {
+  const foodStatistics: StatData[] = foodOptions.map((foodItem) => {
     const count = elementCount(foodItem, usersFoodPreferences)
-    const percentage = parseFloat(
-      ((count / usersFoodPreferences.length) * 100).toFixed(1)
-    )
-    return { foodItem, percentage }
+    const percentage = parseFloat(((count / numOfSurveys) * 100).toFixed(1))
+    return { label: foodItem, value: percentage }
   })
   return foodStatistics
+}
+
+const sumActivityRatings = (element: string, array: ActivityData[]) => {
+  const countContainer: number[] = []
+  array.forEach((item) => {
+    if (item.nameOfActivity === element) {
+      countContainer.push(Number(item.count))
+    }
+  })
+  const sum = countContainer.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  )
+  return sum
 }
 
 export const getActivityStatistics = (
   usersActivityRatings: ActivityData[],
   numOfSurveys: number
-) => {}
+) => {
+  const activityOptions = ['movies', 'radio', 'tv', 'eatOut']
+
+  const activityStatistics: StatData[] = activityOptions.map((element) => {
+    const sum = sumActivityRatings(element, usersActivityRatings)
+    const average = parseFloat((sum / numOfSurveys).toFixed(1))
+    return { label: element, value: average }
+  })
+  return activityStatistics
+}
