@@ -1,68 +1,20 @@
 'use client'
 
-import styles from './surveyform.module.css'
+import { getData } from '@/app/actions/actions'
 import { useEffect, useState } from 'react'
-// import { getUsersBirthYears } from '@/app/api/getData/route'
 
-// const getData = async () => {
-//   const res = await fetch('http://localhost:3000/api/getData', {
-//     method: 'GET',
-//   })
-//   return res.json()
-// }
-
-type Props = {
-  // data: () => Promise<any>
-}
-
-const SurveyResults = async (props: Props) => {
-  const [birthYears, setBirthYears] = useState<string[]>([])
-  const getData = async () => {
-    try {
-      const res = await fetch('http://localhost:3000/api/getData', {
-        method: 'GET',
-      })
-      if (res) {
-        console.log('res', res)
-      }
-    } catch (error) {}
-  }
-
+type Props = {}
+const SurveyResults = (props: Props) => {
+  const [allUsersData, setAllUsersData] = useState()
   useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const data = await getUsersBirthYears()
-    //     setBirthYears(data)
-    //   } catch (error) {
-    //     console.error('Error fetching user birth years:', error)
-    //   }
-    // }
-    // fetchData()
-    //
-    //
-    // const fetchData = async () => {
-    //   try {
-    //     const data = await getData()
-    //     console.log('gggggg', data)
-    //     setBirthYears(data)
-    //   } catch (error) {
-    //     console.error('Error fetching user birth years:', error)
-    //   }
-    // }
-    // fetchData()
-    //
-    //
-    //
-    getData()
-  }, [birthYears])
+    const fd = async () => {
+      const data = await getData()
+      setAllUsersData(data)
+    }
+    fd()
+  }, [])
+  console.log('all user data', allUsersData)
 
-  console.log(birthYears)
-
-  return (
-    <div>
-      SurveyResults
-      <div>{birthYears.length > 0 ? birthYears[0] : 'Loading...'}</div>
-    </div>
-  )
+  return <div>SurveyResults</div>
 }
 export default SurveyResults

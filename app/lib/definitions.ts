@@ -5,7 +5,7 @@ export type Activity = {
 
 export type ActivityData = {
   nameOfActivity: string
-  count: FormDataEntryValue | null
+  count: FormDataEntryValue | null | number
 }
 
 export type SurveyInfo = {

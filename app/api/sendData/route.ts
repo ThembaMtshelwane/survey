@@ -1,4 +1,5 @@
-import { db } from '../../../firebase/firebaseConfig'
+
+import { db } from '@/app/firebase/firebaseConfig'
 import { activities } from '../../lib/data'
 import { ActivityData } from '../../lib/definitions'
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
