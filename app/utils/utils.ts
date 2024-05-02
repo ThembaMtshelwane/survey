@@ -20,3 +20,26 @@ export const getAgeStatistic = (userBirthDates: string[]) => {
 
   return { oldest, youngest, average }
 }
+
+export const getFoodStatistics = (
+  usersFoodPreferences: string[],
+  numOfSurveys: number
+) => {
+  const foodStatistics: { [key: string]: number } = {}
+  usersFoodPreferences.forEach((food) => {
+    if (foodStatistics[food]) {
+      foodStatistics[food]++
+    } else {
+      foodStatistics[food] = 1
+    }
+  })
+  const totalElements = usersFoodPreferences.length
+  const foodPercentages: { [key: string]: number } = {}
+  Object.keys(foodStatistics).forEach((food) => {
+    const count = foodStatistics[food]
+    const percentage = ((count / totalElements) * 100).toFixed(1)
+    foodPercentages[food] = parseFloat(percentage)
+  })
+
+  return foodPercentages
+}

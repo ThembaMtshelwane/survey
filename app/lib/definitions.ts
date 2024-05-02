@@ -8,6 +8,10 @@ export type ActivityData = {
   count: FormDataEntryValue | null | number
 }
 
+export type FoodData = {
+  [key: string]: number
+}
+
 export type SurveyInfo = {
   fullNames: string
   email: string
