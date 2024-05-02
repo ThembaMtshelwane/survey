@@ -1,5 +1,7 @@
+import SurveyResults from '../components/SurveyComponents/SurveyResults/SurveyResults'
+
 type Props = {}
 const page = (props: Props) => {
-  return <div>Survey Results</div>
+  return <SurveyResults />
 }
 export default page

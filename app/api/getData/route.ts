@@ -1,3 +1,7 @@
+import { db } from '@/app/firebase/firebaseConfig'
+import { collection, getDocs } from 'firebase/firestore'
+import { NextResponse } from 'next/server'
+
 // export a function that returns an array of users' ages.
 /*  
         get all documents in the users collection
@@ -8,6 +12,22 @@
 
  - Note numOfSurveys = usersAges.length 
 */
+
+export const GET = async (req: Request) => {
+  let userBirthYears: string[] = []
+  try {
+    const querySnapshot = await getDocs(collection(db, 'users'))
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, ' => ', { ...doc.data() })
+      userBirthYears.push(doc.data().birthDate)
+    })
+    console.error('User birth years fetched successfully')
+    return NextResponse.json({ years: userBirthYears })
+  } catch (error) {
+    console.error('Error fetching users: ', error)
+    throw error
+  }
+}
 
 // export a function that returns an array of users' preferred food.
 /*
