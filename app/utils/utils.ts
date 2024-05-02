@@ -1,5 +1,17 @@
+import { ActivityData, FoodData } from '../lib/definitions'
+
 export const dateToAge = (formDateInput: string) => {
   return new Date().getFullYear() - new Date(formDateInput).getFullYear()
+}
+
+const elementCount = (elementName: string, array: string[]) => {
+  const dataContainer: string[] = []
+  array.forEach((item) => {
+    if (item === elementName) {
+      dataContainer.push(item)
+    }
+  })
+  return dataContainer.length
 }
 
 // replace userBirthDates: string[] with userAges: number[]
@@ -21,25 +33,20 @@ export const getAgeStatistic = (userBirthDates: string[]) => {
   return { oldest, youngest, average }
 }
 
-export const getFoodStatistics = (
-  usersFoodPreferences: string[],
-  numOfSurveys: number
-) => {
-  const foodStatistics: { [key: string]: number } = {}
-  usersFoodPreferences.forEach((food) => {
-    if (foodStatistics[food]) {
-      foodStatistics[food]++
-    } else {
-      foodStatistics[food] = 1
-    }
-  })
-  const totalElements = usersFoodPreferences.length
-  const foodPercentages: { [key: string]: number } = {}
-  Object.keys(foodStatistics).forEach((food) => {
-    const count = foodStatistics[food]
-    const percentage = ((count / totalElements) * 100).toFixed(1)
-    foodPercentages[food] = parseFloat(percentage)
-  })
+export const getFoodStatistics = (usersFoodPreferences: string[]) => {
+  const foodOptions = ['pizza', 'pasta', 'papAndWors', 'other']
 
-  return foodPercentages
+  const foodStatistics: FoodData[] = foodOptions.map((foodItem) => {
+    const count = elementCount(foodItem, usersFoodPreferences)
+    const percentage = parseFloat(
+      ((count / usersFoodPreferences.length) * 100).toFixed(1)
+    )
+    return { foodItem, percentage }
+  })
+  return foodStatistics
 }
+
+export const getActivityStatistics = (
+  usersActivityRatings: ActivityData[],
+  numOfSurveys: number
+) => {}

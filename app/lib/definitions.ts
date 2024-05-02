@@ -9,7 +9,8 @@ export type ActivityData = {
 }
 
 export type FoodData = {
-  [key: string]: number
+  foodItem: string
+  percentage: number
 }
 
 export type SurveyInfo = {
