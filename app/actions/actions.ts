@@ -3,7 +3,7 @@ export const FormSubmitAction = async (
   formData: FormData
 ) => {
   try {
-    const res = await fetch('http://localhost:3000/api/sendData', {
+    const res = await fetch('http://localhost:3000/api/', {
       method: 'POST',
       body: formData,
     })
@@ -11,7 +11,7 @@ export const FormSubmitAction = async (
       const data = await res.json()
       const storedData = getStoredData()
       if (storedData) {
-        localStorage.removeItem('formData') // Remove old data from local storage
+        localStorage.removeItem('formData')
       }
       return data
     }
@@ -22,7 +22,7 @@ export const FormSubmitAction = async (
 
 export const getData = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/getData', {
+    const res = await fetch('http://localhost:3000/api/', {
       method: 'GET',
     })
     if (res.ok) {
