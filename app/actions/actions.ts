@@ -3,7 +3,8 @@ export const FormSubmitAction = async (
   formData: FormData
 ) => {
   try {
-    const res = await fetch('http://localhost:3000/api/', {
+    const res = await fetch('http://localhost:3000/api/sendData/', {
+      mode: 'no-cors',
       method: 'POST',
       body: formData,
     })
@@ -22,7 +23,8 @@ export const FormSubmitAction = async (
 
 export const getData = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/', {
+    const res = await fetch('http://localhost:3000/api/getData/', {
+      mode: 'no-cors',
       method: 'GET',
     })
     if (res.ok) {
