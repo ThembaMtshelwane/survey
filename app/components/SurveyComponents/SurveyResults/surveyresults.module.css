@@ -1,0 +1,47 @@
+.heading {
+  border: 2px solid;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.resultsContainer {
+  border: 2px solid;
+  margin-top: 30px;
+  margin: 30px auto;
+}
+
+.data {
+  border: 2px solid red;
+  margin: auto;
+  max-width: 550px;
+}
+
+.dataPoint {
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.personalData,
+.foodData,
+.activityData {
+  border: 2px solid blue;
+  margin: 10px 0px;
+}
+
+.value {
+  border: 2px solid blue;
+  width: 15%;
+}
+.label {
+  border: 2px solid blue;
+  width: 80%;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .resultsContainer {
+    max-width: 450px;
+  }
+}
