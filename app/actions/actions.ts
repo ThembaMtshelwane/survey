@@ -9,10 +9,7 @@ export const FormSubmitAction = async (
     })
     if (res.ok) {
       const data = await res.json()
-      const storedData = getStoredData()
-      if (storedData) {
-        localStorage.removeItem('formData')
-      }
+      storeDataLocally(data)
       return data
     }
   } catch (error) {
@@ -20,21 +17,24 @@ export const FormSubmitAction = async (
   }
 }
 
+export const storeDataLocally = (data: any) => {
+  localStorage.setItem('formData', JSON.stringify(data))
+}
 export const getData = async () => {
   try {
-    const res = await fetch('/api/getData', {
-      method: 'GET',
-    })
-    if (res.ok) {
-      const data = await res.json()
-      localStorage.setItem('formData', JSON.stringify(data))
-      return data
+    const storedData = localStorage.getItem('formData')
+    if (storedData) {
+      return JSON.parse(storedData)
+    } else {
+      const res = await fetch('/api/getData', { method: 'GET' })
+      if (res.ok) {
+        const data = await res.json()
+        storeDataLocally(data)
+        return data
+      }
     }
   } catch (error) {
     console.log(error)
+    return null
   }
-}
-export const getStoredData = () => {
-  const storedData = localStorage.getItem('formData')
-  return storedData ? JSON.parse(storedData) : null
 }
