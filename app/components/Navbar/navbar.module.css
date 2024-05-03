@@ -29,7 +29,7 @@
 }
 
 .blueText {
-  color: rgb(29, 129, 206);
+  color: var(--primary-blue);
 }
 
 .blackText {

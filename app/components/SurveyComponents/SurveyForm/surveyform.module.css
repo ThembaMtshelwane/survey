@@ -25,18 +25,16 @@
   display: flex;
   flex-direction: column;
   width: 390px;
-}
-
-.inputs {
-  border: 2px solid rgba(13, 192, 232, 0.491);
+  padding-left: 20px;
 }
 
 .textInputs {
-  border: 2px solid rgba(13, 192, 232, 0.491);
+  border: 1.5px solid var(--primary-blue);
   padding: 2px;
   margin-bottom: 10px;
   width: 95%;
   max-width: 250px;
+  border-radius: 2px;
 }
 
 .foodContainer {
@@ -59,9 +57,10 @@
 }
 
 .foodOption {
+  /* border: 1px solid green; */
   display: flex;
   align-items: center;
-  margin: 1px;
+  justify-content: center;
 }
 
 .checkboxInputs {
@@ -69,7 +68,8 @@
   margin: 0px 2px;
   appearance: none;
   border: 5px solid white;
-  outline: 1px solid rgba(18, 178, 226, 0.685);
+  outline: 1px solid var(--primary-blue);
+  margin-right: 5px;
 }
 
 .checkboxInputs:checked {
@@ -110,8 +110,8 @@
 } */
 
 .tableHeadings {
-  background-color: rgba(165, 165, 165, 0.781);
-  border: 1px solid rgb(0, 0, 0);
+  background-color: var(--table--gray);
+  border: 1px solid black;
   text-align: center;
   width: 16%;
   font-weight: 500;
@@ -119,22 +119,22 @@
 }
 
 .tableDataPointQuestion {
-  border: 1px solid rgba(18, 178, 226, 0.685);
+  border: 1px solid var(--primary-blue);
   width: 20%;
   min-width: 100px;
   padding: 4px;
 }
 
 .tableDataPointInput {
-  border: 1px solid rgba(18, 178, 226, 0.685);
+  border: 1px solid var(--primary-blue);
   text-align: center;
-  color: rgba(18, 178, 226, 0.685);
+  color: var(--primary-blue);
 }
 .radioInputs {
   cursor: pointer;
   appearance: none;
   border: 7px solid white;
-  outline: 1px solid rgba(18, 178, 226, 0.685);
+  outline: 1px solid var(--primary-blue);
   border-radius: 50%;
 }
 .radioInputs:checked {
@@ -164,7 +164,9 @@
     max-width: 185px;
   }
   .foodOptions {
+    /* border: 2px solid; */
     max-width: 390px;
+    padding-left: 20px;
   }
   .tableSection {
     overflow: hidden;

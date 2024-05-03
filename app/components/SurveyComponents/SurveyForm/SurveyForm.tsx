@@ -17,6 +17,7 @@ const SurveyForm = (props: Props) => {
   useEffect(() => {
     if (state.status === 'success') {
       formRef.current?.reset()
+      setErrorState(false)
     } else {
       setErrorMessages(state.message)
       console.log('xxxxxx', state.message)

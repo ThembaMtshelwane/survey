@@ -1,3 +1,9 @@
+:root {
+  --primary-blue: rgba(18, 178, 226, 0.685);
+  --button-blue: blue;
+  --table--gray: rgba(165, 165, 165, 0.781);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
