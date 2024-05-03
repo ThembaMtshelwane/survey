@@ -2,7 +2,7 @@
 
 import styles from './surveyresults.module.css'
 
-import { getData } from '@/app/actions/actions'
+import { getData, getStoredData } from '@/app/actions/actions'
 import { AgeStats, AllUsersInfo, StatData } from '@/app/lib/definitions'
 import {
   getActivityStatistics,
@@ -20,19 +20,20 @@ const SurveyResults = (props: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const storedData = getStoredData()
-      // if (storedData) {
-      //   setAllUsersData(storedData)
-      // } else {
+      const storedData = getStoredData()
+      if (storedData) {
+        setAllUsersData(storedData)
+      } else {
       const data = await getData()
       setAllUsersData(data)
-      // }
+      }
     }
     fetchData()
   }, [])
 
   useEffect(() => {
     if (allUsersData) {
+     
       const ages = getAgeStatistic(allUsersData.usersAges)
       setAgeStatistics(ages)
 
@@ -61,7 +62,7 @@ const SurveyResults = (props: Props) => {
             <Activity activityStatistics={activityStatistics} />
           </section>
         </section>
-      ) : allUsersData ? (
+      ) : !allUsersData ? (
         <div>Loading...</div>
       ) : (
         <div>No Surveys</div>

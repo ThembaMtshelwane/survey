@@ -3,16 +3,16 @@ export const FormSubmitAction = async (
   formData: FormData
 ) => {
   try {
-    const res = await fetch('http://localhost:3000/api/sendData', {
+    const res = await fetch('/api/sendData', {
       method: 'POST',
       body: formData,
     })
     if (res.ok) {
       const data = await res.json()
-      // const storedData = getStoredData()
-      // if (storedData) {
-      //   localStorage.removeItem('formData')
-      // }
+      const storedData = getStoredData()
+      if (storedData) {
+        localStorage.removeItem('formData')
+      }
       return data
     }
   } catch (error) {
@@ -22,20 +22,19 @@ export const FormSubmitAction = async (
 
 export const getData = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/getData', {
-      // mode: 'no-cors',
+    const res = await fetch('/api/getData', {
       method: 'GET',
     })
     if (res.ok) {
       const data = await res.json()
-      // localStorage.setItem('formData', JSON.stringify(data))
+      localStorage.setItem('formData', JSON.stringify(data))
       return data
     }
   } catch (error) {
     console.log(error)
   }
 }
-// export const getStoredData = () => {
-//   const storedData = localStorage.getItem('formData')
-//   return storedData ? JSON.parse(storedData) : null
-// }
+export const getStoredData = () => {
+  const storedData = localStorage.getItem('formData')
+  return storedData ? JSON.parse(storedData) : null
+}
