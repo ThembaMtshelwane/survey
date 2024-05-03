@@ -41,6 +41,15 @@ export const POST = async (req: Request) => {
       })
     }
 
+    if (Array.from(data.getAll('foodItem')).length !== 0) {
+      console.log('Age is appropriate')
+    } else {
+      return Response.json({
+        message: 'Please select one of the food options or Other',
+        status: 'fail',
+      })
+    }
+
     const activityRatings: ActivityData[] = []
 
     activities.map((item) => {
