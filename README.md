@@ -1,8 +1,10 @@
 # Survey Website
 
-This is a website used to collect data about people's lifestyle preferences. The more people participate the more information we will have about people's hobbies/activities., favourite foods and age.
+This is a website used to collect data about people's lifestyle preferences. The more people participate the more information we will have about people's hobbies/activities., favorite foods and age.
 
 There are two sections to this site, ie the Survey form and the Survey Results.
+
+Try it out: [add link]
 
 ## Survey Form
 
@@ -16,17 +18,13 @@ This represents the second page. Here a user will see the results from all the d
 
 - Language: TypeScript
 - Next.js for fullstack development.
-- Google's Firebase for database and authentication .
+- Google's Firebase for database.
 - CSS for styling.
 
-## Improvements
+## To Dos
 
-- The UI.
-  - First Page: Change the outline colour for the radio and checkbox inputs.
-  - Implement the second page.
-    <br>
-- Implement the Database.
-  - Retrieve the data from the database.
-    <br>
-- Implement the Data Analysis functionality.
-  - Process the data.
+- Deployment.
+  -Fix CORS error
+
+- Testing.
+  -user testing

@@ -30,12 +30,7 @@ export const POST = async (req: Request) => {
     }
 
     const age = dateToAge(data.get('birthDate'))
-    console.log('birthDate', data.get('birthDate'))
-
-    console.log('age', age)
-
     if (Number(age) >= 5 && Number(age) <= 120) {
-      console.log('Age is appropriate')
     } else {
       return Response.json({
         message: 'Age must be between 5 and 120',
@@ -44,7 +39,6 @@ export const POST = async (req: Request) => {
     }
 
     if (Array.from(data.getAll('foodItem')).length !== 0) {
-      console.log('Age is appropriate')
     } else {
       return Response.json({
         message: 'Please select one of the food options or Other',
@@ -53,7 +47,6 @@ export const POST = async (req: Request) => {
     }
 
     const activityRatings: ActivityData[] = []
-
     activities.map((item) => {
       activityRatings.push({
         nameOfActivity: item.id,

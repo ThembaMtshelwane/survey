@@ -1,6 +1,6 @@
 import { db } from '@/app/firebase/firebaseConfig'
 import { ActivityData } from '@/app/lib/definitions'
-import { getDocs, collection, addDoc, doc, setDoc } from 'firebase/firestore'
+import { getDocs, collection} from 'firebase/firestore'
 import { NextResponse } from 'next/server'
 
 export const GET = async (req: Request) => {
