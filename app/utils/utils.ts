@@ -1,8 +1,15 @@
 import { activityOptions, foodOptions } from '../lib/data'
 import { ActivityData, StatData } from '../lib/definitions'
+import { differenceInYears, parse } from 'date-fns'
 
-export const dateToAge = (formDateInput: string) => {
-  return new Date().getFullYear() - new Date(formDateInput).getFullYear()
+export const dateToAge = (formDateInput: FormDataEntryValue | null) => {
+  if (typeof formDateInput === 'string') {
+    const birthDate = parse(formDateInput, 'yyyy-MM-dd', new Date())
+    const currentDate = new Date()
+    return differenceInYears(currentDate, birthDate)
+  } else {
+    console.error('Birth date is null.')
+  }
 }
 
 const elementCount = (elementName: string, array: string[]) => {
@@ -15,24 +22,17 @@ const elementCount = (elementName: string, array: string[]) => {
   return dataContainer.length
 }
 
-// replace userBirthDates: string[] with userAges: number[]
-export const getAgeStatistic = (userBirthDates: string[]) => {
-  if (userBirthDates.length === 0)
+export const getAgeStatistic = (usersAges: number[]) => {
+  if (usersAges.length === 0)
     return { oldest: 0, youngest: 0, average: 0, numOfSurveys: 0 }
 
-  const currentYear = new Date().getFullYear()
-  const userAges = userBirthDates.map(
-    (userBirthDate: string) =>
-      currentYear - new Date(userBirthDate).getFullYear()
-  )
-
-  userAges.sort((a, b) => a - b)
-  const numOfSurveys = userAges.length
-  const oldest = userAges[userAges.length - 1]
-  const youngest = userAges[0]
-  const sum = userAges.reduce((acc, age) => acc + age, 0)
+  usersAges.sort((a, b) => a - b)
+  const numOfSurveys = usersAges.length
+  const oldest = usersAges[usersAges.length - 1]
+  const youngest = usersAges[0]
+  const sum = usersAges.reduce((acc, age) => acc + age, 0)
   const average =
-    userAges.length > 0 ? parseFloat((sum / userAges.length).toFixed(1)) : 0
+    usersAges.length > 0 ? parseFloat((sum / usersAges.length).toFixed(1)) : 0
 
   return { oldest, youngest, average, numOfSurveys }
 }

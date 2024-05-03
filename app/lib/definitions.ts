@@ -30,7 +30,7 @@ export type AgeStats = {
 }
 
 export type AllUsersInfo = {
-  usersBirthYears: string[]
+  usersAges: number[]
   numOfSurveys: number
   usersFoodPreferences: string[]
   usersActivityRatings: ActivityData[]

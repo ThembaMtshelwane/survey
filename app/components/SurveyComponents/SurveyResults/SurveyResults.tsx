@@ -33,7 +33,7 @@ const SurveyResults = (props: Props) => {
 
   useEffect(() => {
     if (allUsersData) {
-      const ages = getAgeStatistic(allUsersData.usersBirthYears)
+      const ages = getAgeStatistic(allUsersData.usersAges)
       setAgeStatistics(ages)
 
       const food = getFoodStatistics(

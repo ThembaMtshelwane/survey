@@ -1,24 +1,63 @@
-import { db } from "@/app/firebase/firebaseConfig"
-import { activities } from "@/app/lib/data"
-import { ActivityData } from "@/app/lib/definitions"
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"
+import { db } from '@/app/firebase/firebaseConfig'
+import { activities } from '@/app/lib/data'
+import { ActivityData } from '@/app/lib/definitions'
+import { dateToAge } from '@/app/utils/utils'
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from 'firebase/firestore'
 
 export const POST = async (req: Request) => {
   const data = await req.formData()
-  const activityRatings: ActivityData[] = []
+  const email = data.get('email')
 
-  activities.map((item) => {
-    activityRatings.push({ nameOfActivity: item.id, count: data.get(item.id) })
-  })
-
-  const userData = {
-    fullNames: data.get('fullNames'),
-    email: data.get('email'),
-    birthDate: data.get('birthDate'),
-    selectedFoods: Array.from(data.getAll('foodItem')),
-    activityRatings,
-  }
   try {
+    const userQuery = query(
+      collection(db, 'users'),
+      where('email', '==', email)
+    )
+    const userSnapshot = await getDocs(userQuery)
+    if (!userSnapshot.empty) {
+      return Response.json({
+        message: 'User already exists',
+        status: 'fail',
+      })
+    }
+
+    const age = dateToAge(data.get('birthDate'))
+    console.log('age', age)
+
+    if (Number(age) >= 5 && Number(age) <= 120) {
+      console.log('Age is appropriate')
+    } else {
+      return Response.json({
+        message: 'Age must be between 5 and 120',
+        status: 'fail',
+      })
+    }
+
+    const activityRatings: ActivityData[] = []
+
+    activities.map((item) => {
+      activityRatings.push({
+        nameOfActivity: item.id,
+        count: data.get(item.id),
+      })
+    })
+
+    const userData = {
+      fullNames: data.get('fullNames'),
+      email,
+      age,
+      selectedFoods: Array.from(data.getAll('foodItem')),
+      activityRatings,
+    }
+
     const docRef = await addDoc(collection(db, 'users'), userData)
 
     const foodDocRef = doc(db, 'allFoodPreferences', docRef.id)

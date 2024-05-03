@@ -4,14 +4,14 @@ import { getDocs, collection, addDoc, doc, setDoc } from 'firebase/firestore'
 import { NextResponse } from 'next/server'
 
 export const GET = async (req: Request) => {
-  let usersBirthYears: string[] = []
+  let usersAges: number[] = []
   let usersFoodPreferences: string[] = []
   let usersActivityRatings: ActivityData[] = []
 
   try {
     const querySnapshot = await getDocs(collection(db, 'users'))
     querySnapshot.forEach((doc) => {
-      usersBirthYears.push(doc.data().birthDate)
+      usersAges.push(doc.data().age)
     })
 
     const querySnapshot2 = await getDocs(collection(db, 'allFoodPreferences'))
@@ -26,8 +26,8 @@ export const GET = async (req: Request) => {
 
     console.log('All users fetched successfully')
     return NextResponse.json({
-      usersBirthYears: usersBirthYears,
-      numOfSurveys: usersBirthYears.length,
+      usersAges: usersAges,
+      numOfSurveys: usersAges.length,
       usersFoodPreferences: usersFoodPreferences,
       usersActivityRatings: usersActivityRatings,
     })
