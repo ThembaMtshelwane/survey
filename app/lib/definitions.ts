@@ -26,6 +26,7 @@ export type AgeStats = {
   oldest: number
   youngest: number
   average: number
+  numOfSurveys: number
 }
 
 export type AllUsersInfo = {

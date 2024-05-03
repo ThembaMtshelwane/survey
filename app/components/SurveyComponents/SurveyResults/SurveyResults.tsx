@@ -56,32 +56,8 @@ const SurveyResults = (props: Props) => {
         <section className={styles.resultsContainer}>
           <section className={styles.heading}>Survey Results</section>
           <section className={styles.data}>
-            <section className={styles.personalData}>
-              <section className={styles.dataPoint}>
-                <div className={styles.label}>Total number of survey :</div>
-                <div className={styles.value}>{allUsersData?.numOfSurveys}</div>
-              </section>
-              <section className={styles.dataPoint}>
-                <div className={styles.label}>Average :</div>
-                <div className={styles.value}> {ageStatistics.average}</div>
-              </section>
-
-              <section className={styles.dataPoint}>
-                <div className={styles.label}>
-                  Oldest person who participated in survey :
-                </div>
-                <div className={styles.value}>{ageStatistics.oldest}</div>
-              </section>
-              <section className={styles.dataPoint}>
-                <div className={styles.label}>
-                  Youngest person who participated in survey :
-                </div>
-                <div className={styles.value}>{ageStatistics.youngest}</div>
-              </section>
-            </section>
-
+            <PersonalData ageStatistics={ageStatistics} />
             <Food foodStatistics={foodStatistics} />
-
             <Activity activityStatistics={activityStatistics} />
           </section>
         </section>
@@ -94,6 +70,38 @@ const SurveyResults = (props: Props) => {
   )
 }
 export default SurveyResults
+
+type personalData = {
+  ageStatistics: AgeStats
+}
+
+const PersonalData = ({ ageStatistics }: personalData) => {
+  return (
+    <section className={styles.personalData}>
+      <section className={styles.dataPoint}>
+        <div className={styles.label}>Total number of survey :</div>
+        <div className={styles.value}>{ageStatistics.numOfSurveys}</div>
+      </section>
+      <section className={styles.dataPoint}>
+        <div className={styles.label}>Average :</div>
+        <div className={styles.value}> {ageStatistics.average}</div>
+      </section>
+
+      <section className={styles.dataPoint}>
+        <div className={styles.label}>
+          Oldest person who participated in survey :
+        </div>
+        <div className={styles.value}>{ageStatistics.oldest}</div>
+      </section>
+      <section className={styles.dataPoint}>
+        <div className={styles.label}>
+          Youngest person who participated in survey :
+        </div>
+        <div className={styles.value}>{ageStatistics.youngest}</div>
+      </section>
+    </section>
+  )
+}
 
 type a = {
   activityStatistics: StatData[]
