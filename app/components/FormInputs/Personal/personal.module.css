@@ -1,0 +1,38 @@
+.personalDetailsContainer {
+  /* border: 2px solid blue; */
+  margin-bottom: 15px;
+}
+
+.leftSection {
+  /* border: 2px solid blue; */
+  width: 100%;
+}
+
+.rightSection {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  padding-left: 20px;
+}
+
+.textInputs,
+.dateInput {
+  border: 1.5px solid var(--primary-blue);
+  padding: 2px;
+  margin-bottom: 10px;
+  width: 95%;
+  max-width: 250px;
+  border-radius: 2px;
+  height: 25px;
+}
+
+@media only screen and (min-width: 380px) {
+  .personalDetailsContainer {
+    display: flex;
+  }
+  .leftSection {
+    width: 40%;
+    max-width: 185px;
+  }
+}

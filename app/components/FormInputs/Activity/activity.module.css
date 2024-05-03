@@ -1,0 +1,57 @@
+.activitiesContainer {
+  /* border: 2px solid blue; */
+  margin-bottom: 10px;
+}
+
+.tableSection {
+  overflow: scroll;
+}
+
+.tableInstructions {
+  /* border: 2px solid blue; */
+  margin-bottom: 10px;
+}
+
+.table {
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.tableHeadings {
+  background-color: var(--table--gray);
+  border: 1px solid black;
+  text-align: center;
+  width: 16%;
+  font-weight: 500;
+  padding: 5px 10px;
+}
+
+.tableDataPointQuestion {
+  border: 1px solid var(--primary-blue);
+  width: 20%;
+  min-width: 100px;
+  padding: 4px;
+}
+
+.tableDataPointInput {
+  border: 1px solid var(--primary-blue);
+  text-align: center;
+  color: var(--primary-blue);
+}
+.radioInputs {
+  cursor: pointer;
+  appearance: none;
+  border: 7px solid white;
+  outline: 1px solid var(--primary-blue);
+  border-radius: 50%;
+}
+.radioInputs:checked {
+  appearance: checkbox;
+}
+
+@media only screen and (min-width: 380px) {
+  .tableSection {
+    overflow: hidden;
+  }
+}
