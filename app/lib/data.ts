@@ -10,3 +10,6 @@ export const activities: Activity[] = [
 export const foodOptions = ['pizza', 'pasta', 'papAndWors', 'other']
 
 export const activityOptions = ['movies', 'radio', 'tv', 'eatOut']
+
+export const MAX_AGE = 120
+export const MIN_AGE = 5

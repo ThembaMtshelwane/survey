@@ -30,6 +30,8 @@ export const POST = async (req: Request) => {
     }
 
     const age = dateToAge(data.get('birthDate'))
+    console.log('birthDate', data.get('birthDate'))
+
     console.log('age', age)
 
     if (Number(age) >= 5 && Number(age) <= 120) {

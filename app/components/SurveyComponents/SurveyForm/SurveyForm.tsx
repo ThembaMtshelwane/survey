@@ -1,11 +1,13 @@
 'use client'
 
-import { activities } from '@/app/lib/data'
+import { activities, MAX_AGE, MIN_AGE } from '@/app/lib/data'
 import styles from './surveyform.module.css'
 import { useFormState, useFormStatus } from 'react-dom'
 import { FormSubmitAction } from '@/app/actions/actions'
 import SubmitButton from '../../SubmitButton/SubmitButton'
 import { useEffect, useRef, useState } from 'react'
+import DatePicker, { setDefaultLocale } from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 type Props = {}
 const SurveyForm = (props: Props) => {
@@ -13,6 +15,7 @@ const SurveyForm = (props: Props) => {
   const formRef = useRef<HTMLFormElement>(null)
   const [errorMessages, setErrorMessages] = useState<string>('')
   const [errorState, setErrorState] = useState<boolean>(false)
+  const [selectedDate, setSelectedDate] = useState<Date>()
 
   useEffect(() => {
     if (state.status === 'success') {
@@ -20,7 +23,6 @@ const SurveyForm = (props: Props) => {
       setErrorState(false)
     } else {
       setErrorMessages(state.message)
-      console.log('xxxxxx', state.message)
       setErrorState(true)
     }
   }, [state])
@@ -44,12 +46,31 @@ const SurveyForm = (props: Props) => {
             required
             className={`${styles.inputs} ${styles.textInputs}`}
           />
+
           <label htmlFor="birthDate">Date of Birth</label>
-          <input
-            type="date"
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date: Date) => setSelectedDate(date)}
+            dateFormat="yyyy-MM-dd"
             name="birthDate"
-            required
-            className={`${styles.inputs} ${styles.textInputs}`}
+            className={`${styles.dateInput} `}
+            showYearDropdown
+            scrollableYearDropdown
+            yearDropdownItemNumber={MAX_AGE}
+            minDate={
+              new Date(
+                `${
+                  new Date().getFullYear() - MAX_AGE
+                }-${new Date().getMonth()}-${new Date().getDate()}`
+              )
+            }
+            maxDate={
+              new Date(
+                `${
+                  new Date().getFullYear() - MIN_AGE
+                }-${new Date().getMonth()}-${new Date().getDate()}`
+              )
+            }
           />
           <label htmlFor="contactNumber">Contact Number</label>
           <input
