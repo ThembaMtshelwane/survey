@@ -9,6 +9,7 @@ import {
   getFoodStatistics,
 } from '@/app/utils/utils'
 import { useEffect, useState } from 'react'
+import DataState from '../../DataState/DataState'
 
 type Props = {}
 const SurveyResults = (props: Props) => {
@@ -65,9 +66,9 @@ const SurveyResults = (props: Props) => {
           </section>
         </section>
       ) : isLoading ? (
-        <div>Loading...</div>
+        <DataState message="Loading Data..." />
       ) : (
-        <div>No Surveys</div>
+        <DataState message="No Surveys Available" />
       )}
     </div>
   )

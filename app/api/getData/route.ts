@@ -4,17 +4,19 @@ import { getDocs, collection } from 'firebase/firestore'
 import { NextResponse } from 'next/server'
 
 export const GET = async (req: Request) => {
-  let usersAges: number[] = []
-  let usersFoodPreferences: string[] = []
-  let emails: string[] = []
-  let usersActivityRatings: ActivityData[] = []
-
   try {
+    let usersAges: number[] = []
+    let usersFoodPreferences: string[] = []
+    let emails: string[] = []
+    let usersActivityRatings: ActivityData[] = []
+    let numOfSurveys = 0
+
     const querySnapshot = await getDocs(collection(db, 'users'))
     querySnapshot.forEach((doc) => {
       usersAges.push(doc.data().age)
       emails.push(doc.data().email)
     })
+    numOfSurveys = usersAges.length
 
     const querySnapshot2 = await getDocs(collection(db, 'allFoodPreferences'))
     querySnapshot2.forEach((doc) => {
@@ -30,7 +32,7 @@ export const GET = async (req: Request) => {
     return NextResponse.json({
       emails,
       usersAges: usersAges,
-      numOfSurveys: usersAges.length,
+      numOfSurveys,
       usersFoodPreferences: usersFoodPreferences,
       usersActivityRatings: usersActivityRatings,
     })

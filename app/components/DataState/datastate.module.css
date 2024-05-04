@@ -1,0 +1,16 @@
+.messageContainer {
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  max-width: 350px;
+  height: 50vh;
+  margin: auto;
+}
+
+.content {
+  /* border: 2px solid; */
+  font-size: 1.2rem;
+  font-weight: 700;
+}

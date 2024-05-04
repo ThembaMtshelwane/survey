@@ -18,7 +18,10 @@ export const FormSubmitAction = async (
 
 export const getData = async () => {
   try {
-    const res = await fetch('/api/getData', { method: 'GET' })
+    const res = await fetch('/api/getData', {
+      method: 'GET',
+      cache: 'no-store',
+    })
     if (res.ok) {
       const data = await res.json()
       return data
