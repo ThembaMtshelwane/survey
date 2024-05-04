@@ -17,17 +17,20 @@ const SurveyResults = (props: Props) => {
   const [ageStatistics, setAgeStatistics] = useState<AgeStats>()
   const [foodStatistics, setFoodStatistics] = useState<StatData[]>()
   const [activityStatistics, setActivityStatistics] = useState<StatData[]>()
+  const [isLoading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       const data = await getData()
       setAllUsersData(data)
+      setLoading(false)
     }
     fetchData()
   }, [])
 
   useEffect(() => {
-    if (allUsersData) {
+    if (allUsersData?.numOfSurveys) {
       const ages = getAgeStatistic(allUsersData.usersAges)
       setAgeStatistics(ages)
 
@@ -45,6 +48,8 @@ const SurveyResults = (props: Props) => {
     }
   }, [allUsersData])
 
+  console.log('allUserData', allUsersData)
+
   return (
     <div>
       {ageStatistics && foodStatistics && activityStatistics ? (
@@ -56,7 +61,7 @@ const SurveyResults = (props: Props) => {
             <Activity activityStatistics={activityStatistics} />
           </section>
         </section>
-      ) : !allUsersData ? (
+      ) : isLoading ? (
         <div>Loading...</div>
       ) : (
         <div>No Surveys</div>

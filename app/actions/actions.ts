@@ -1,3 +1,6 @@
+import { AllUsersInfo } from '../lib/definitions'
+import { isEmailInList, storeGetDataLocally, storePostDataLocally } from '../utils/utils'
+
 export const FormSubmitAction = async (
   prevState: string,
   formData: FormData
@@ -9,7 +12,7 @@ export const FormSubmitAction = async (
     })
     if (res.ok) {
       const data = await res.json()
-      storeDataLocally(data)
+      storePostDataLocally(formData.get('email'))
       return data
     }
   } catch (error) {
@@ -17,19 +20,16 @@ export const FormSubmitAction = async (
   }
 }
 
-export const storeDataLocally = (data: any) => {
-  localStorage.setItem('formData', JSON.stringify(data))
-}
 export const getData = async () => {
   try {
     const storedData = localStorage.getItem('formData')
-    if (storedData) {
+    if (isEmailInList() && storedData) {
       return JSON.parse(storedData)
     } else {
       const res = await fetch('/api/getData', { method: 'GET' })
       if (res.ok) {
-        const data = await res.json()
-        storeDataLocally(data)
+        const data: AllUsersInfo = await res.json()
+        storeGetDataLocally(data)
         return data
       }
     }

@@ -1,5 +1,5 @@
 import { activityOptions, foodOptions } from '../lib/data'
-import { ActivityData, StatData } from '../lib/definitions'
+import { ActivityData, AllUsersInfo, StatData } from '../lib/definitions'
 import { differenceInYears, parse } from 'date-fns'
 
 export const dateToAge = (formDateInput: FormDataEntryValue | null) => {
@@ -73,4 +73,25 @@ export const getActivityStatistics = (
     return { label: element, value: average }
   })
   return activityStatistics
+}
+
+export const storePostDataLocally = (email: FormDataEntryValue | null) => {
+  localStorage.setItem('email', JSON.stringify(email))
+}
+
+export const storeGetDataLocally = (data: AllUsersInfo) => {
+  localStorage.setItem('emails', JSON.stringify(data.emails))
+  localStorage.setItem('formData', JSON.stringify(data))
+}
+
+export const isEmailInList = (): boolean => {
+  const storedEmail = localStorage.getItem('email')
+  const storedEmailsJSON = localStorage.getItem('emails')
+
+  if (storedEmail && storedEmailsJSON) {
+    const email = JSON.parse(storedEmail) as string
+    const storedEmails: string[] = JSON.parse(storedEmailsJSON)
+    return storedEmails.includes(email)
+  }
+  return false
 }

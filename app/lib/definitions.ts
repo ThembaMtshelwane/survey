@@ -30,6 +30,7 @@ export type AgeStats = {
 }
 
 export type AllUsersInfo = {
+  emails: string[]
   usersAges: number[]
   numOfSurveys: number
   usersFoodPreferences: string[]
