@@ -75,23 +75,23 @@ export const getActivityStatistics = (
   return activityStatistics
 }
 
-export const storePostDataLocally = (email: FormDataEntryValue | null) => {
-  localStorage.setItem('email', JSON.stringify(email))
-}
+// export const storePostDataLocally = (email: FormDataEntryValue | null) => {
+//   localStorage.setItem('email', JSON.stringify(email))
+// }
 
-export const storeGetDataLocally = (data: AllUsersInfo) => {
-  localStorage.setItem('emails', JSON.stringify(data.emails))
-  localStorage.setItem('formData', JSON.stringify(data))
-}
+// export const storeGetDataLocally = (data: AllUsersInfo) => {
+//   localStorage.setItem('emails', JSON.stringify(data.emails))
+//   localStorage.setItem('formData', JSON.stringify(data))
+// }
 
-export const isEmailInList = (): boolean => {
-  const storedEmail = localStorage.getItem('email')
-  const storedEmailsJSON = localStorage.getItem('emails')
+// export const isEmailInList = (): boolean => {
+//   const storedEmail = localStorage.getItem('email')
+//   const storedEmailsJSON = localStorage.getItem('emails')
 
-  if (storedEmail && storedEmailsJSON) {
-    const email = JSON.parse(storedEmail) as string
-    const storedEmails: string[] = JSON.parse(storedEmailsJSON)
-    return storedEmails.includes(email)
-  }
-  return false
-}
+//   if (storedEmail && storedEmailsJSON) {
+//     const email = JSON.parse(storedEmail) as string
+//     const storedEmails: string[] = JSON.parse(storedEmailsJSON)
+//     return storedEmails.includes(email)
+//   }
+//   return false
+// }

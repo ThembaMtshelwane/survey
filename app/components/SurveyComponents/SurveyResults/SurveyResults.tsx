@@ -13,7 +13,9 @@ import { useEffect, useState } from 'react'
 
 type Props = {}
 const SurveyResults = (props: Props) => {
-  const [allUsersData, setAllUsersData] = useState<AllUsersInfo>()
+  const [allUsersData, setAllUsersData] = useState<
+    AllUsersInfo | null | undefined
+  >()
   const [ageStatistics, setAgeStatistics] = useState<AgeStats>()
   const [foodStatistics, setFoodStatistics] = useState<StatData[]>()
   const [activityStatistics, setActivityStatistics] = useState<StatData[]>()
@@ -22,7 +24,7 @@ const SurveyResults = (props: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      const data = await getData()
+      const data: AllUsersInfo | null | undefined = await getData()
       setAllUsersData(data)
       setLoading(false)
     }
