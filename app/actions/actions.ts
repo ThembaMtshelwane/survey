@@ -22,7 +22,7 @@ export const FormSubmitAction = async (
 
 export const getData = async () => {
   try {
-    const storedData = localStorage.getItem('formData')
+    // const storedData = localStorage.getItem('formData')
     // if (isEmailInList() && storedData) {
     //   return JSON.parse(storedData)
     // } else {
