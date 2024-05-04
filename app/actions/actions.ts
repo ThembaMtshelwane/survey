@@ -11,7 +11,6 @@ export const FormSubmitAction = async (
       const data = await res.json()
       return data
     }
-    return null
   } catch (error) {
     console.log(error)
   }
@@ -24,7 +23,6 @@ export const getData = async () => {
       const data = await res.json()
       return data
     }
-    return null
   } catch (error) {
     console.log(error)
     return null
