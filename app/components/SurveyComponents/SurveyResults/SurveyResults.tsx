@@ -1,7 +1,6 @@
 'use client'
 
 import styles from './surveyresults.module.css'
-
 import { getData } from '@/app/actions/actions'
 import { AgeStats, AllUsersInfo, StatData } from '@/app/lib/definitions'
 import {
@@ -47,6 +46,8 @@ const SurveyResults = (props: Props) => {
         allUsersData.numOfSurveys
       )
       setActivityStatistics(activities)
+    } else {
+      setAllUsersData(null)
     }
   }, [allUsersData])
 
