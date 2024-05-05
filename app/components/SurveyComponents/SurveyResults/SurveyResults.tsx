@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react'
 import DataState from '../../DataState/DataState'
 import { db } from '@/app/firebase/firebaseConfig'
 import { getDocs, collection } from 'firebase/firestore'
-import { getData } from '@/app/api/getData/route'
+import { getData } from '@/app/actions/getData'
 
 type Props = {}
 const SurveyResults = (props: Props) => {
