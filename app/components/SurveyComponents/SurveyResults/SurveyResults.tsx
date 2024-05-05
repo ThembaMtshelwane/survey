@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './surveyresults.module.css'
-import { getData } from '@/app/actions/actions'
+
 import {
   ActivityData,
   AgeStats,

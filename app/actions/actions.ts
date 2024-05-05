@@ -16,19 +16,19 @@ export const FormSubmitAction = async (
   }
 }
 
-export const getData = async () => {
-  try {
-    const res = await fetch('/api/getData', {
-      method: 'GET',
-      cache: 'no-store',
-    })
-    if (res.ok) {
-      const data = await res.json()
-      console.log('new data...')
-      return data
-    }
-  } catch (error) {
-    console.log(error)
-    return null
-  }
-}
+// export const getData = async () => {
+//   try {
+//     const res = await fetch('/api/getData', {
+//       method: 'GET',
+//       cache: 'no-store',
+//     })
+//     if (res.ok) {
+//       const data = await res.json()
+//       console.log('new data...')
+//       return data
+//     }
+//   } catch (error) {
+//     console.log(error)
+//     return null
+//   }
+// }
