@@ -15,6 +15,8 @@ import {
 } from '@/app/utils/utils'
 import { useEffect, useState } from 'react'
 import DataState from '../../DataState/DataState'
+import { db } from '@/app/firebase/firebaseConfig'
+import { getDocs, collection } from 'firebase/firestore'
 
 type Props = {}
 const SurveyResults = (props: Props) => {
@@ -28,11 +30,25 @@ const SurveyResults = (props: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
-      console.log('loading data')
-      const data: AllUsersInfo | null | undefined = await getData()
-      setAllUsersData(data)
-      setLoading(false)
+      // setLoading(true)
+      // console.log('loading data')
+      // const data: AllUsersInfo | null | undefined = await getData()
+      // setAllUsersData(data)
+      // setLoading(false)
+      const addData = async () => {
+        try {
+          const data: any = []
+          const querySnapshot = await getDocs(collection(db, 'users'))
+          querySnapshot.forEach((doc) => {
+            data.push(doc.data())
+          })
+          // setData(data)
+          console.log('data: ', data)
+        } catch (e) {
+          console.error('Error adding document: ', e)
+        }
+      }
+      addData()
     }
 
     fetchData()
