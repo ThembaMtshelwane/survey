@@ -4,7 +4,7 @@ This is a website used to collect data about people's lifestyle preferences. The
 
 There are two sections to this site, ie the Survey form and the Survey Results.
 
-Try it out: [add link]
+Try it out: https://survey-beige-five.vercel.app/
 
 ## Survey Form
 
@@ -21,10 +21,7 @@ This represents the second page. Here a user will see the results from all the d
 - Google's Firebase for database.
 - CSS for styling.
 
-## To Dos
-
-- Deployment.
-  -Fix CORS error
-
-- Testing.
-  -user testing
+## Futyre Improvements 
+- Cache the fectched data
+- Hide Firebase details
+- Add loading spinner when submitting form data
