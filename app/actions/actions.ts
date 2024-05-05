@@ -1,3 +1,5 @@
+'use client'
+
 export const FormSubmitAction = async (
   prevState: string,
   formData: FormData

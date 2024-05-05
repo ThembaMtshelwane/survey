@@ -2,7 +2,12 @@
 
 import styles from './surveyresults.module.css'
 import { getData } from '@/app/actions/actions'
-import { AgeStats, AllUsersInfo, StatData } from '@/app/lib/definitions'
+import {
+  ActivityData,
+  AgeStats,
+  AllUsersInfo,
+  StatData,
+} from '@/app/lib/definitions'
 import {
   getActivityStatistics,
   getAgeStatistic,
@@ -29,6 +34,7 @@ const SurveyResults = (props: Props) => {
       setAllUsersData(data)
       setLoading(false)
     }
+
     fetchData()
   }, [])
 
