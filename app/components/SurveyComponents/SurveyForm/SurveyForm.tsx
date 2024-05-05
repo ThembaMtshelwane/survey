@@ -5,7 +5,6 @@ import { useFormState } from 'react-dom'
 import { FormSubmitAction } from '@/app/actions/actions'
 import SubmitButton from '../../SubmitButton/SubmitButton'
 import { useEffect, useRef, useState } from 'react'
-import PersonalInput from '../../FormInputs/Personal/Personal'
 import personalStyles from '../../FormInputs/Personal/personal.module.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -34,7 +33,6 @@ const SurveyForm = (props: Props) => {
 
   return (
     <form ref={formRef} action={FormAction} className={styles.formContainer}>
-      {/* <PersonalInput /> */}
       <section className={personalStyles.personalDetailsContainer}>
         <section className={personalStyles.leftSection}>
           Personal Details:
@@ -94,10 +92,7 @@ const SurveyForm = (props: Props) => {
       </section>
       <FoodInputs />
       <ActivityInputs />
-      <section className={styles.buttonContainer}>
-        <SubmitButton />
-      </section>
-      {/* <FormMessage message ={state.message}/> */}
+      <SubmitButton />
     </form>
   )
 }

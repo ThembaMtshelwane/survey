@@ -3,7 +3,7 @@ export const FormSubmitAction = async (
   formData: FormData
 ) => {
   try {
-    const res = await fetch('/api/sendData', {
+    const res = await fetch('/api', {
       method: 'POST',
       body: formData,
     })
@@ -16,19 +16,3 @@ export const FormSubmitAction = async (
   }
 }
 
-// export const getData = async () => {
-//   try {
-//     const res = await fetch('/api/getData', {
-//       method: 'GET',
-//       cache: 'no-store',
-//     })
-//     if (res.ok) {
-//       const data = await res.json()
-//       console.log('new data...')
-//       return data
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     return null
-//   }
-// }

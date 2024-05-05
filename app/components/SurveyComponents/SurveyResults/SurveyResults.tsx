@@ -3,7 +3,6 @@
 import styles from './surveyresults.module.css'
 
 import {
-  ActivityData,
   AgeStats,
   AllUsersInfo,
   StatData,
@@ -30,7 +29,6 @@ const SurveyResults = (props: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      console.log('loading data')
       const data: AllUsersInfo | null | undefined = await getData()
       setAllUsersData(data)
       setLoading(false)
@@ -40,7 +38,6 @@ const SurveyResults = (props: Props) => {
 
   useEffect(() => {
     if (allUsersData?.numOfSurveys) {
-      console.log('data is available')
       const ages = getAgeStatistic(allUsersData.usersAges)
       setAgeStatistics(ages)
 
@@ -57,9 +54,8 @@ const SurveyResults = (props: Props) => {
       setActivityStatistics(activities)
     } else {
       setAllUsersData(null)
-      console.log('No data')
     }
-    console.log('allUserData', allUsersData)
+
   }, [allUsersData])
 
   return (
