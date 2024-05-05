@@ -44,6 +44,7 @@ const SurveyResults = (props: Props) => {
         querySnapshot.forEach((doc) => {
           data.push(doc.data())
         })
+        console.log('loading')
         // setData(data)
         console.log('data: ', data)
       } catch (e) {
