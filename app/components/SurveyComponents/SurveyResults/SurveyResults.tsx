@@ -2,11 +2,7 @@
 
 import styles from './surveyresults.module.css'
 
-import {
-  AgeStats,
-  AllUsersInfo,
-  StatData,
-} from '@/app/lib/definitions'
+import { AgeStats, AllUsersInfo, StatData } from '@/app/lib/definitions'
 import {
   getActivityStatistics,
   getAgeStatistic,
@@ -55,8 +51,8 @@ const SurveyResults = (props: Props) => {
     } else {
       setAllUsersData(null)
     }
-
   }, [allUsersData])
+
 
   return (
     <div>

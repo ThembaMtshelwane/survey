@@ -19,19 +19,22 @@ export const getData = async () => {
 
     const querySnapshot2 = await getDocs(collection(db, 'allFoodPreferences'))
     querySnapshot2.forEach((doc: any) => {
-      usersFoodPreferences.push(doc.data())
+      usersFoodPreferences.push(...doc.data().selectedFoods)
     })
 
     const querySnapshot3 = await getDocs(collection(db, 'allActivityRatings'))
     querySnapshot3.forEach((doc: any) => {
-      usersActivityRatings.push(doc.data())
+      usersActivityRatings.push(...doc.data().activityRatings)
     })
-    return {
+    const dataFetched = {
       numOfSurveys,
       emails,
       usersAges,
       usersActivityRatings,
       usersFoodPreferences,
     }
+    console.log('data fetched')
+
+    return dataFetched
   } catch (error) {}
 }
