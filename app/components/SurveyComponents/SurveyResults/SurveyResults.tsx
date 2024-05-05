@@ -17,67 +17,67 @@ import { useEffect, useState } from 'react'
 import DataState from '../../DataState/DataState'
 import { db } from '@/app/firebase/firebaseConfig'
 import { getDocs, collection } from 'firebase/firestore'
+import { getData } from '@/app/api/getData/route'
 
 type Props = {}
 const SurveyResults = (props: Props) => {
-  // const [allUsersData, setAllUsersData] = useState<
-  //   AllUsersInfo | null | undefined
-  // >()
-  // const [ageStatistics, setAgeStatistics] = useState<AgeStats>()
-  // const [foodStatistics, setFoodStatistics] = useState<StatData[]>()
-  // const [activityStatistics, setActivityStatistics] = useState<StatData[]>()
-  // const [isLoading, setLoading] = useState<boolean>(false)
+  const [allUsersData, setAllUsersData] = useState<
+    AllUsersInfo | null | undefined
+  >()
+  const [ageStatistics, setAgeStatistics] = useState<AgeStats>()
+  const [foodStatistics, setFoodStatistics] = useState<StatData[]>()
+  const [activityStatistics, setActivityStatistics] = useState<StatData[]>()
+  const [isLoading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
-    // const fetchData = async () => {
-    // setLoading(true)
-    // console.log('loading data')
-    // const data: AllUsersInfo | null | undefined = await getData()
-    // setAllUsersData(data)
-    // setLoading(false)
+    const fetchData = async () => {
+    setLoading(true)
+    console.log('loading data')
+    const data: AllUsersInfo | null | undefined = await getData()
+    setAllUsersData(data)
+    setLoading(false)
+    }
+      fetchData()
+    // const addData = async () => {
+    //   try {
+    //     const data: any = []
+    //     const querySnapshot = await getDocs(collection(db, 'users'))
+    //     querySnapshot.forEach((doc) => {
+    //       data.push(doc.data())
+    //     })
+    //     console.log('loading')
+    //     // setData(data)
+    //     console.log('data: ', data)
+    //   } catch (e) {
+    //     console.error('Error adding document: ', e)
     //   }
     // }
-    const addData = async () => {
-      try {
-        const data: any = []
-        const querySnapshot = await getDocs(collection(db, 'users'))
-        querySnapshot.forEach((doc) => {
-          data.push(doc.data())
-        })
-        console.log('loading')
-        // setData(data)
-        console.log('data: ', data)
-      } catch (e) {
-        console.error('Error adding document: ', e)
-      }
-    }
-    addData()
-    // fetchData()
+    // addData()
   }, [])
 
-  // useEffect(() => {
-  //   if (allUsersData?.numOfSurveys) {
-  //     console.log('data is available')
-  //     const ages = getAgeStatistic(allUsersData.usersAges)
-  //     setAgeStatistics(ages)
+  useEffect(() => {
+    if (allUsersData?.numOfSurveys) {
+      console.log('data is available')
+      const ages = getAgeStatistic(allUsersData.usersAges)
+      setAgeStatistics(ages)
 
-  //     const food = getFoodStatistics(
-  //       allUsersData.usersFoodPreferences,
-  //       allUsersData.numOfSurveys
-  //     )
-  //     setFoodStatistics(food)
+      const food = getFoodStatistics(
+        allUsersData.usersFoodPreferences,
+        allUsersData.numOfSurveys
+      )
+      setFoodStatistics(food)
 
-  //     const activities = getActivityStatistics(
-  //       allUsersData.usersActivityRatings,
-  //       allUsersData.numOfSurveys
-  //     )
-  //     setActivityStatistics(activities)
-  //   } else {
-  //     setAllUsersData(null)
-  //     console.log('No data')
-  //   }
-  //   console.log('allUserData', allUsersData)
-  // }, [allUsersData])
+      const activities = getActivityStatistics(
+        allUsersData.usersActivityRatings,
+        allUsersData.numOfSurveys
+      )
+      setActivityStatistics(activities)
+    } else {
+      setAllUsersData(null)
+      console.log('No data')
+    }
+    console.log('allUserData', allUsersData)
+  }, [allUsersData])
 
   return (
     <div>
@@ -100,6 +100,7 @@ const SurveyResults = (props: Props) => {
   )
 }
 export default SurveyResults
+
 
 // type personalData = {
 //   ageStatistics: AgeStats
