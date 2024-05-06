@@ -14,7 +14,8 @@ import {
 
 export const POST = async (req: Request) => {
   const data = await req.formData()
-  const email = data.get('email')
+  const email = data.get('email')?.toString().toLowerCase()
+  console.log('email', email)
 
   try {
     const userQuery = query(
