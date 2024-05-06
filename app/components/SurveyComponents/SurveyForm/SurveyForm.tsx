@@ -63,6 +63,7 @@ const SurveyForm = (props: Props) => {
             showYearDropdown
             scrollableYearDropdown
             yearDropdownItemNumber={MAX_AGE}
+            required
             minDate={
               new Date(
                 `${
